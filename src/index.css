@@ -1,70 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
+@layer base {
+  html, body {
+    background-color: #f8fafc !important;
+    color: #1e293b;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Safe Area Insets para Celulares Modernos (iPhone notch, Android pill) */
 :root {
-  --bg-app: #F0FDF4;
-  --bg-card: #FFFFFF;
-  --text-main: #002A15;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
-  --border: #E2E8F0;
-  --border-light: #F1F5F9;
-  --primary: #10B981;
-  --danger: #EF4444;
-  --danger-bg: #FEE2E2;
-  --warning: #F59E0B;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --table-header-bg: #F8FAFC;
-  --input-bg: #FFFFFF;
-  --modal-overlay: rgba(15, 23, 42, 0.4);
-  --shadow: rgba(0, 0, 0, 0.05);
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
 }
 
-.dark {
-  --bg-app: #020603;
-  --bg-card: #0A0F0C;
-  --text-main: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --border: #1E2922;
-  --border-light: #0F1713;
-  --primary: #10B981;
-  --danger: #F87171;
-  --danger-bg: #450a0a;
-  --warning: #FBBF24;
-  --glass-bg: rgba(10, 15, 12, 0.8);
-  --glass-border: rgba(16, 185, 129, 0.2);
-  --table-header-bg: #0C120F;
-  --input-bg: #0C120F;
-  --modal-overlay: rgba(0, 0, 0, 0.9);
-  --shadow: rgba(0, 0, 0, 0.7);
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 16px));
 }
 
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: var(--bg-app); 
-  font-family: 'Montserrat', sans-serif;
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
 }
 
-
-/* Base styles to make RNW reset properly */
-#root {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+/* Primary Green Colors */
+.bg-primary-green {
+  background-color: #005b2e;
 }
 
-input::placeholder, textarea::placeholder {
-  color: var(--text-muted);
-  opacity: 0.7;
+.text-primary-green {
+  color: #005b2e;
 }
 
-input:focus, textarea:focus, select:focus {
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+/* Corporate Cards - Light Theme Default com visual limpo de App */
+.corporate-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Inputs, Selects & Textareas com estilo App Mobile e Desktop */
+input[type="text"],
+input[type="datetime-local"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #005b2e;
+  box-shadow: 0 0 0 2px rgba(0, 91, 46, 0.15);
+}
+
+/* Badges Corporativos */
+.corporate-badge-baixo {
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.corporate-badge-medio,
+.corporate-badge-médio {
+  background-color: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.corporate-badge-alto,
+.corporate-badge-critico,
+.corporate-badge-crítico {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Sem barra de rolagem em abas mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Scrollbar Desktop */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
